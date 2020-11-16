@@ -1,0 +1,64 @@
+﻿@using StoreFront.DATA.EF;
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        StoreFrontEntities db = new StoreFrontEntities();
+
+        string userID = User.Identity.GetUserId();
+
+        UserDetail currentUser = db.UserDetails.Where(ud => ud.UserID == userID).FirstOrDefault();
+
+        //for safety - if the user is null or not found - supply a default for the Customer name
+        string userName = "Guest";
+
+        if (currentUser != null)
+        {
+            userName = currentUser.CustomerName;
+        }
+
+        <nav class="nav-menu d-none d-lg-block">
+            <ul >
+                <li class="drop-down">
+                    @Html.ActionLink("Hello " + userName + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                    <ul>
+                        <li>
+
+                            <a href="javascript:document.getElementById('logoutForm').submit()">
+                                Sign-out <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li><a href="@Url.Action("#", "#")">Orders</a></li>
+                        <li><a href="@Url.Action("Index", "ShoppingCart")">Cart</a></li>
+                        <li><a href="@Url.Action("Create", "Products")">Post Listings</a></li>
+
+                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li><a href="@Url.Action("Index", "RolesAdmin")">View Roles</a></li>
+                            <li><a href="@Url.Action("Index", "UsersAdmin")">View Users</a></li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    }
+}
+else
+{
+
+    <li>
+        <a href="/Account/Register" id="registerLink">
+            Register
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+        </a>
+    </li>
+    <li>
+        <a href="/Account/Login" id="loginLink">
+            Login
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+        </a>
+    </li>
+}

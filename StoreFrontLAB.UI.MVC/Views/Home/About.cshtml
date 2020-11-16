@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+@section banner{
+    <section id="heroAbout" class="d-flex flex-column justify-content-center align-items-center hero">
+        <div class="container" data-aos="fade-in">
+            <h1>About Velour Vintage</h1><br />
+            <h2>Buy, Sell and Trade Vintage Clothing Online</h2>
+        </div>
+    </section>
+}
+
+<section id="faq" class="faq section-bg">
+    <div class="container">
+        <hr />
+        <div class="section-title">
+            <p data-aos="fade-up">Velour Vintage is a vintage resale store located in downtown Kansas City, MO. Velour curates to Men's and Women's fashion, with new products being added every day. We post most of our in store items online, as well as allow verified members to post their new and used clothing, to sell on our online store. We do our part to ensure all items are authentic before we ship them to you. For all concerns, and to submit a refund request, contact us <a href="@Url.Action("Contact", "Home")">here</a></p>
+        </div>
+
+        <div class="faq-list">
+            <ul>
+                <li data-aos="fade-up">
+                    <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" class="collapse" href="#faq-list-1">Buy<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-1" class="collapse show" data-parent=".faq-list">
+                        <p>
+                            The 'Source' field on all products shows the name of the user selling the item. All products purchased from a user will first be sent to our office to be authenticated. All products avaiable directly from our Velour will show 'Velour Vintage' in the 'Source' field in the product description. You can come view our products in person at our store in <strong>A108 Adam Street Kansas City, MO 535022</strong>!
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up">
+                    <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-2" class="collapsed">Sell<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-2" class="collapse" data-parent=".faq-list">
+                        <p>
+                            Your closet is valuable. Flip your wardrobe on our online marketplace for a low-low fee of <em>0.75%</em> of the purchase price. As with buying, sellers who transact through Velour with PayPal are protected! Local? Bring by your used clothing and one of our associates with help appraise your items.
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up">
+                    <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-3" class="collapsed">Trade<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-3" class="collapse" data-parent=".faq-list">
+                        <p>
+                            We encourage users to reach out to each other for trade inquiries. To ensure your transaction goes off without a hitch and that all items involved are authentic, Velour will act as a liason for a low-low commision rate of <em>0.75%</em> (same as our seller's fee). Planning on trading, contact us <a href="@Url.Action("Contact", "Home")">here</a>
+                        </p>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</section><!-- End F.A.Q Section -->

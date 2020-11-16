@@ -1,0 +1,118 @@
+﻿@model StoreFront.DATA.EF.Product
+
+@{
+    ViewBag.Title = $"{Model.ProductName}";
+}
+
+
+<div>
+    <hr />
+    <h3>@ViewBag.Title</h3>
+
+    <dl class="dl-horizontal">
+        <dd>
+            <div class="col-md-6">
+                <img src="~/Content/img/shop/@Model.ProductImage" alt="Product Image" title="@Model.ProductName" class="display-img" />
+            </div>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Condition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Condition)
+        </dd>
+
+        @if (Model.Source != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Source)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Source)
+            </dd>
+        }
+        else
+        {
+            <dd>
+                <p style="color: red;">* Source not found. Please contact the site adminstrator</p>
+            </dd>
+        }
+
+
+        @if (ViewBag.IsInStock == false)
+        {
+            <dd>
+                <p style="color: red;">* This item is currently out of stock</p>
+            </dd>
+        }
+        else
+        {
+            <dt>In stock</dt>
+            <dd>
+                <p>@(ViewBag.UnitsInStock + (ViewBag.UnitsInStock > 1 ? " units in stock" : " unit in stock"))
+            </dd>
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @if (Model.Description != null)
+            {
+                @Html.DisplayFor(model => model.Description)
+            }
+            else
+            {
+                <p style="color: red;">*No description was provided for this product</p>
+            }
+        </dd>
+    </dl>
+</div>
+
+@if (Model.Source != null && Model.InStock == true)
+{
+    @*If no source is provided (meaning our logic was circumvented or an error occured) OR the item is out of stock, do not allow the customer to add the item to thier cart.*@
+    using (Html.BeginForm("AddToCart", "Products", new { productID = Model.ProductID }, FormMethod.Post, new { style = "display: inline;" }))
+    {
+        @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 50px; display: inline;" })
+        <input type="submit" value="Add To Cart" class="main-button" />
+    }
+}
+else
+{
+    <p style="color: red;">*This item is temporarily unavailable </p>
+}
+
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
+        @Html.ActionLink("Back", "Index")
+    </p>
+}

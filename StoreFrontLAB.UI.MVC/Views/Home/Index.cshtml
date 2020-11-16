@@ -1,0 +1,47 @@
+﻿@model IEnumerable<StoreFront.DATA.EF.Category>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@section banner{
+    <section id="heroHome" class="d-flex flex-column justify-content-center align-items-center hero">
+        <div class="container" data-aos="fade-in">
+            <h1>Welcome to Velour Vintage</h1>
+            <h2>Buy, Sell and Trade Vintage Clothing Online</h2>
+        </div>
+    </section>
+    <hr />
+}
+
+    <section id="portfolio" class="portfolio">
+        <h2 style="margin-bottom: 30px !important;" class="section-title">Shop by Category</h2>
+        <div class="row portfolio-container">   
+            @foreach (var item in Model)
+            {
+                <a href="@Url.Action("Index", "Products")?SearchString=@item.CategoryName">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                        <img src="~/Content/img/shop/category-@(item.CategoryID).jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>@Html.DisplayFor(modelItem => item.CategoryName)</h4>
+                            <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                        </div>
+                    </div>
+                </a>
+            }
+
+            <a href="@Url.Action("Index", "Products")">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <img src="~/Content/img/shop/shop-all.jpg" class="img-fluid" alt="">
+                    <div class="portfolio-info">
+                        <h4>Shop All Products</h4>
+                        <p></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+
+
+

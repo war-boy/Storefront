@@ -1,0 +1,100 @@
+﻿@model PagedList.IPagedList<StoreFront.DATA.EF.Product>
+@using PagedList.Mvc;
+@using StoreFront.DATA.EF
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Shop all";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="searchPanel">
+    @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+    {
+
+        <div class="row">
+            <div class="col-md-10 input-group">
+                <input name="SearchString" object="ViewBag.SearchString as string" type="text" class="form-control" aria-describedby="basic-addon2" placeholder="Search by item name" />
+                <input type="submit" value="Search" class="input-group-addon" id="basic-addon2" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                @Html.ActionLink("Reset", "Index", "Products", null, new { @class = "btn" })
+            </div>
+        </div>
+    }
+</div>
+
+<hr />
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchString = ViewBag.SearchString }))
+
+<hr />
+
+@if (Model.Count() == 0)
+{
+    <h3 class="text-center">No results found for: <em>@Request.QueryString["SearchString"].ToString()</em></h3>
+}
+else
+{
+    if (User.IsInRole("Admin, User, Employee"))
+    {
+        <p>
+            @Html.ActionLink("Sell", "Create")
+        </p>
+    }
+    <h3 class="text-center"><em>@Model.Count</em> item@(Model.Count > 1 ? "s" : "") found.</h3>
+    <section id="team" class="team section-bg">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                StoreFrontEntities db = new StoreFrontEntities();
+
+                string userID = User.Identity.GetUserId();
+
+                UserDetail currentUser = db.UserDetails.Where(ud => ud.UserID == userID).FirstOrDefault();
+
+                
+                <div class="col-lg-3 col-md-6" data-aos="fade-up">
+                    <div class="member">
+                        <div class="member-img">
+                            <a href="@Url.Action("Details", new { id=item.ProductID })">
+                                <img src="~/Content/img/shop/@item.ProductImage" alt="@item.ProductName" class="product-img">
+                            </a>
+                            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <div class="social">
+                                    <a href="@Url.Action("Edit", "Products", new { id = item.ProductID })">Edit</a>
+                                    <a href="@Url.Action("Delete", "Products", new { id = item.ProductID })">Delete</a>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="member-info">
+                            <a href="@Url.Action("Details", new { id=item.ProductID })">
+                                <h4>@Html.DisplayFor(modelItem => item.ProductName), @Html.DisplayFor(modelItem => item.Size)</h4>
+                                <span>@Html.DisplayFor(modelItem => item.Price)</span>
+                                <span>@Html.DisplayFor(modelItem => item.Condition)</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </section>
+}
+
+@*<td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
+    </td>*@
+
+
+

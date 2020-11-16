@@ -1,0 +1,158 @@
+﻿/*#region Home Banner */
+#heroHome {
+    width: 100%;
+    height: 60vh;
+    background: url("../../Content/img/banners/homeHero.jpg") center center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    margin-bottom: -120px;
+}
+
+    #heroHome h1 {
+        margin: 0 0 10px 0;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 56px;
+        color: #fff;
+        background-color: rgba(0,0,0,0.35);
+        display: inline-block;
+    }
+
+    #heroHome h2 {
+        color: #fff;
+        margin-bottom: 50px;
+        font-size: 24px;
+        background-color: rgba(0,0,0,0.35);
+        display: inline-block;
+    }
+
+/*#endregion */
+
+/*#region About Banner*/
+#heroAbout {
+    width: 100%;
+    height: 60vh;
+    background: url("../../Content/img/banners/heroAbout.jpg") center center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    margin-bottom: -120px;
+}
+
+    #heroAbout h1 {
+        margin: 0 0 10px 0;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 56px;
+        color: #fff;
+        background-color: rgba(0,0,0,0.35);
+        display: inline-block;
+    }
+
+    #heroAbout h2 {
+        color: #fff;
+        margin-bottom: 50px;
+        font-size: 24px;
+        background-color: rgba(0,0,0,0.35);
+        display: inline-block;
+    }
+/*#endregion */
+
+@media (max-height: 768px) {
+    .hero {
+        margin-bottom: 0px;
+    }
+}
+
+.hero {
+    margin-bottom: 0;
+}
+
+#header.transparent-nav .main-menu li.active a {
+    color: #ff5821;
+    text-decoration: none;
+}
+
+
+div.contact input, div.contact a {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    font-family: "Open Sans", sans-serif;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-color: transparent;
+    color: #ff7e54;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+ul.manage li, ul.manage li a {
+    display: inline;
+}
+
+img.img-fluid {
+    height: 255px;
+}
+
+img.product-img {
+    height: 255px;
+    width: 255px;
+}
+
+img.thumb-img {
+    height: 150px;
+    width: 150px;
+}
+
+img.display-img {
+    height: 320px;
+    width: 300px;
+}
+
+a.active {
+    color: #ff5821;
+    text-decoration: none;
+}
+
+.video-box img {
+    background-size: cover;
+    min-height: 500px;
+    min-width: 440px;
+    border-right: 1px solid #554945;
+}
+
+#portfolio {
+    padding-top: 105px;
+}
+
+section.portfolio {
+    font-size: 32px;
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+    color: #635551;
+}
+
+.about .icon-box h4.title {
+    color: #343a40;
+}
+
+.products-upper {
+    border: 1px solid #554945;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.products-lower {
+    border: 1px solid #554945;
+    border-top: none;
+    border-radius: 0px 0px 5px 5px;
+    padding: 10px;
+}
+
+    .products-lower a {
+        padding-left: 5px;
+    }

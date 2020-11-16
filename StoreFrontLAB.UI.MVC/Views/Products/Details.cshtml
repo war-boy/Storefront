@@ -1,0 +1,100 @@
+﻿@model StoreFront.DATA.EF.Product
+
+@{
+    ViewBag.Title = $"{Model.ProductName}";
+}
+
+<div class="products-upper">
+    <div class="row">
+
+        <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch">
+            <img src="~/Content/img/shop/@Model.ProductImage" alt="Product Image" title="@Model.ProductName" class="display-img" />
+        </div>
+
+        <div class="col-xl-3 col-lg-3 icon-boxes d-flex flex-column align-items-stretch justify-content-center px-lg-5">
+            <h3>@ViewBag.Title</h3>
+            <h4 class="title" style="font-weight:700;">
+                @Html.DisplayFor(model => model.Price)
+            </h4>
+
+            <div class="icon-box">
+                <h4 class="title">Details</h4>
+                <p class="description">
+                    @Html.DisplayNameFor(model => model.Category.CategoryName): @Html.DisplayFor(model => model.Category.CategoryName) <br />
+                    @Html.DisplayNameFor(model => model.Size): @Html.DisplayFor(model => model.Size) <br />
+                    @Html.DisplayNameFor(model => model.Condition): @Html.DisplayFor(model => model.Condition)<br />
+                </p>
+                @if (Model.Source != null)
+                {
+                    <p class="description">
+                        @Html.DisplayNameFor(model => model.Source): @Html.DisplayFor(model => model.Source)
+                    </p>
+                }
+                else
+                {
+                    <p style="color: red;" class="description">* Source not found. Please contact the site adminstrator</p>
+                }
+                @if (ViewBag.IsInStock == false)
+                {
+                    <p style="color: red;" class="description">* This item is currently out of stock</p>
+                }
+                else
+                {
+                    <p class="description">
+                        In stock <br />
+                        @(ViewBag.UnitsInStock + (ViewBag.UnitsInStock > 1 ? " units in stock" : " unit in stock"))
+                    </p>
+                }
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 icon-boxes d-flex flex-column align-items-stretch justify-content-center px-lg-5">
+            <div class="icon-box">
+                <h4 class="title">@Html.DisplayNameFor(model => model.Description)</h4>
+
+                @if (Model.Description != null)
+                {
+                    <p class="description">
+                        @Html.DisplayFor(model => model.Description)
+                    </p>
+                }
+                else
+                {
+                    <p style="color: red;" class="description">*No description was provided for this product</p>
+                }
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="products-lower">
+    <div class="row">
+        <div class="col-xl-5 col-lg-6 video-box d-flex">
+            @if (Model.Source != null && Model.InStock == true)
+            {
+                @*If no source is provided (meaning our logic was circumvented or an error occured) OR the item is out of stock, do not allow the customer to add the item to thier cart.*@
+                using (Html.BeginForm("AddToCart", "Products", new { productID = Model.ProductID }, FormMethod.Post, new { style = "display: inline;" }))
+                {
+                    @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 50px; display: inline;" })
+                    <input type="submit" value="Add To Cart" class="main-button" />
+                }
+            }
+            else
+            {
+                <p style="color: red;">*This item is temporarily unavailable </p>
+            }
+        </div>
+        <div class="col-xl-3 col-lg-2 d-flex">
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
+
+                </p>
+            }
+            <p>@Html.ActionLink("Back", "Index")</p>
+        </div>
+    </div>
+</div>

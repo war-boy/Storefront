@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    @* TODO 2: bundle styles and scripts *@
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>@ViewBag.Title</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/Content/img/velour_favicon.png" rel="icon">
+    <link href="~/Content/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!--Paged List for filtering-->
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <!-- Vendor CSS Files -->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="~/Content/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/Content/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="~/Content/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/Content/vendor/aos/aos.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/Content/css/style.css" rel="stylesheet">
+
+    <!--Custom CSS-->
+    <link href="~/Content/css/custom.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+    <!-- =======================================================
+    * Template Name: Flexor - v2.2.0
+    * Template URL: https://bootstrapmade.com/flexor-free-multipurpose-bootstrap-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header">
+        <div class="container d-flex">
+
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="@Url.Action("Index", "Home")"><span>Velour Vintage</span></a></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            </div>
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul id="responsive-nav">
+                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li><a href="@Url.Action("About", "Home")">About</a></li>
+                    <li class="drop-down">
+                        <a href="@Url.Action("Index", "Products")">Shop</a>
+                        <ul>
+                            <li><a href="@Url.Action("Index", "Products")?SearchString=Outerwear">Outerwear</a></li>
+                            <li><a href="@Url.Action("Index", "Products")?SearchString=Tops">Tops</a></li>
+                            <li><a href="@Url.Action("Index", "Products")?SearchString=Bottoms">Bottoms</a></li>
+                            <li class="drop-down">
+                                <a href="#">Footwear</a>
+                                <ul>
+                                    <li><a href="@Url.Action("Index", "Products")?SearchString=Sneakers">Sneakers</a></li>
+                                    <li><a href="@Url.Action("Index", "Products")?SearchString=Dress Shoes">Dress Shoes</a></li>
+                                    <li><a href="@Url.Action("Index", "Products")?SearchString=Boots">Boots</a></li>
+                                    <li><a href="@Url.Action("Index", "Products")?SearchString=Other Footwear">Other Footwear</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop-down">
+                                <a href="#">Accessories</a>
+                                <ul>
+                                    <li><a href="@Url.Action("Index", "Products")?SearchString=Hats">Hats</a></li>
+                                    <li><a href="@Url.Action("Index", "Products")?SearchString=Glasses">Glasses</a></li>
+                                    <li><a href="@Url.Action("Index", "Products")?SearchString=Watches and Jewlery">Watches and Jewlery</a></li>
+                                    <li><a href="@Url.Action("Index", "Products")?SearchString=Bags and Luggage">Bags and Luggage</a></li>
+                                    <li><a href="@Url.Action("Index", "Products")?SearchString=Miscellaneous">Miscellaneous</a></li>
+
+                                </ul>
+                            </li>
+                            <li><a href="@Url.Action("Index", "Categories")">View All Categories</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="@Url.Action("Contact", "Home")">Contact <i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
+                    <li> @Html.Partial("_LoginPartial")</li>
+                </ul>
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
+    <!-- ======= Hero Section ======= -->
+
+    @RenderSection("banner", required: false)
+
+
+    <main id="main">
+        <section id="about" class="about section-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <br/>
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>Flexor</h3>
+                        <p>
+                            A108 Adam Street <br>
+                            Kansas City, MO 535022<br>
+                            United States <br><br>
+                            <strong>Phone:</strong> +1 5589 55488 55<br>
+                            <strong>Email:</strong> info@example.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 footer-links">
+                        <h4>Shop</h4>
+                        <ul>
+                            <li><a href="@Url.Action("Index", "Products")?SearchString=Outerwear">Outerwear</a></li>
+                            <li><a href="@Url.Action("Index", "Products")?SearchString=Tops">Tops</a></li>
+                            <li><a href="@Url.Action("Index", "Products")?SearchString=Bottoms">Bottoms</a></li>
+                            <li><a href="@Url.Action("Index", "Products")?SearchString=Sneakers">Sneakers</a></li>
+                            <li><a href="@Url.Action("Index", "Products")">View All</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("Index", "Products")">Buy</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("Create", "Products")">Sell</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("About", "Home")">Trade</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-newsletter">
+                        <h4>Join Our Newsletter</h4>
+                        <p>Be the first to get the latest news and hot deals from Velour Vintage</p>
+                        <form action="" method="post">
+                            <input type="email" name="email"><input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container d-lg-flex py-4">
+
+            <div class="mr-lg-auto text-center text-lg-left">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Flexor</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexor-free-multipurpose-bootstrap-template/ -->
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    @*<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>*@
+
+    <!-- Vendor JS Files -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Content/vendor/php-email-form/validate.js"></script>
+    <script src="~/Content/vendor/jquery-sticky/jquery.sticky.js"></script>
+    <script src="~/Content/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Content/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="~/Content/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/Content/vendor/aos/aos.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/Content/js/main.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+        $('#responsive-nav li a').each(function () {
+            if ($(this).attr('href') == window.location.pathname) {
+                $(this).addClass('active');
+            }
+        });
+    </script>
+</body>
+
+</html>
