@@ -67,7 +67,7 @@ namespace StoreFrontLAB.UI.MVC.Controllers
 
             SmtpClient client = new SmtpClient("mail.ryaneutsler.com");
 
-            client.Credentials = new NetworkCredential("admin@ryaneutsler.com", "Yearoftheknife219!!");
+            client.Credentials = new NetworkCredential("admin@ryaneutsler.com", "");
 
             client.Port = 8889;
 
